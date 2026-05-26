@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>FinBank Dashboard</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script defer
+        src="{{ url_for('static', filename='app.js') }}"></script>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div>
+
+            <h2 class="logo">
+                FinBank
+            </h2>
+
+            <div class="nav-links">
+
+                <button class="nav-btn active">
+
+                    Dashboard
+
+                </button>
+
+                <a href="/logout"
+                    class="logout-btn">
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+        <div class="topbar">
+
+            <h1>
+                Welcome, {{ user }}
+            </h1>
+
+        </div>
+
+        <!-- UPLOAD -->
+
+        <div class="upload-section">
+
+            <div class="upload-box">
+
+                <input type="file"
+                    id="dataset">
+
+                <button class="btn upload-btn"
+                    onclick="uploadDataset()">
+
+                    Upload Dataset
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <input type="date"
+                id="startDate">
+
+            <input type="date"
+                id="endDate">
+
+            <button class="btn analyze-btn"
+                onclick="analyzeData()">
+
+                Analyze Data
+
+            </button>
+
+        </div>
+
+        <!-- KPI CARDS -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Total Loans</h3>
+
+                <p id="loans">
+                    ₹0
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Total Deposits</h3>
+
+                <p id="deposits">
+                    ₹0
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Average Balance</h3>
+
+                <p id="balance">
+                    ₹0
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Customer Segmentation</h3>
+
+                <p id="segment">
+
+                    Low: 0 <br>
+                    Medium: 0 <br>
+                    High: 0
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CHART -->
+
+        <div class="chart-card">
+
+            <h2 class="chart-title">
+
+                Customer Segmentation Analysis
+
+            </h2>
+
+            <div class="chart-wrapper">
+
+                <canvas id="chart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

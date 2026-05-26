@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-box">
+        <h1>Create Account</h1>
+
+        <form id="registerForm">
+
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" name="full_name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone" pattern="\d{10}" required>
+            </div>
+
+            <div class="input-group">
+                <label>Date of Birth</label>
+                <input type="date" name="dob" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+                <div class="error">
+                    Minimum 8 chars, 1 uppercase, 1 number, 1 special character
+                </div>
+            </div>
+
+            <button class="btn">Register</button>
+        </form>
+
+        <div class="link">
+            <a href="/login">Already have account?</a>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', async(e)=>{
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    const response = await fetch('/register', {
+        method:'POST',
+        body:formData
+    });
+
+    const data = await response.json();
+
+    if(data.status==='success'){
+        alert('Registration successful');
+        window.location='/login';
+    }else{
+        alert(data.message);
+    }
+})
+</script>
+
+</body>
+</html>
